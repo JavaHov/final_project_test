@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<entity-mappings ptype="MONOLITH" ppkg="finalprojecttest" epkg="domain" v="5.4.3" rws="_16200339936942" Pws="_16200339936942" cws="_16200339936942" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_16200339936931" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <entity compositePrimaryKeyClass="StudentPK" abs="false" class="Student" v="true" jbn="false" xre="false" m="false" rootElement="_16200339936931" id="_16200380266723">
+        <ath>Me</ath>
+        <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_162003846092515">
+                <xwm/>
+                <xm/>
+            </basic>
+            <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_16200380616549" connected-attribute-id="_162003890165330" v="true" xvt="" name="education" id="_162003890164829">
+                <xwm/>
+                <xm/>
+            </one-to-one>
+            <id attribute-type="int" v="true" xvt="" name="id" id="_16200380267304">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="Student.findAll">
+            <query>Select e from Student e</query>
+        </nq>
+        <nq e="false" name="Student.findByName">
+            <query>Select s from Student s where s.name=:name</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="TeacherPK" abs="false" class="Teacher" v="true" jbn="false" xre="false" m="false" rootElement="_16200339936931" id="_16200380307696">
+        <ath>Me</ath>
+        <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_162003851539218">
+                <xwm/>
+                <xm/>
+            </basic>
+            <many-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_162003808469612" connected-attribute-id="_162003875558424" v="true" xvt="" name="courses" id="_162003875558123">
+                <xwm/>
+                <xm/>
+            </many-to-many>
+            <id attribute-type="int" v="true" xvt="" name="id" id="_16200380307707">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="Teacher.findAll">
+            <query>Select e from Teacher e</query>
+        </nq>
+        <nq e="false" name="Teacher.findByName">
+            <query>Select t from Teacher t where t.name=:name</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="EducationPK" abs="false" class="Education" v="true" jbn="false" xre="false" m="false" rootElement="_16200339936931" id="_16200380616549">
+        <ath>Me</ath>
+        <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_162003848737916">
+                <xwm/>
+                <xm/>
+            </basic>
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_162003808469612" connected-attribute-id="_162003878900726" v="true" xvt="" name="courses" id="_162003878901027">
+                <xwm/>
+                <xm/>
+            </one-to-many>
+            <one-to-one orp="false" optional="true" primaryKey="false" connected-entity-id="_16200380266723" connected-attribute-id="_162003890164829" v="true" xvt="" name="student" id="_162003890165330">
+                <xwm/>
+                <xm/>
+            </one-to-one>
+            <id attribute-type="int" v="true" xvt="" name="id" id="_162003806165510">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="Education.findAll">
+            <query>Select e from Education e</query>
+        </nq>
+        <nq e="false" name="Education.findByName">
+            <query>Select e from Education e where e.name=:name</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="CoursePK" abs="false" class="Course" v="true" jbn="false" xre="false" m="false" rootElement="_16200339936931" id="_162003808469612">
+        <ath>Me</ath>
+        <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_162003850411617">
+                <xwm/>
+                <xm/>
+            </basic>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_16200380616549" connected-attribute-id="_162003878901027" v="true" xvt="" name="education" id="_162003878900726">
+                <xwm/>
+                <xm/>
+            </many-to-one>
+            <many-to-many collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_16200380307696" connected-attribute-id="_162003875558123" v="true" xvt="" name="teachers" id="_162003875558424">
+                <xwm/>
+                <xm/>
+            </many-to-many>
+            <id attribute-type="int" v="true" xvt="" name="id" id="_162003808469613">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="Course.findAll">
+            <query>Select e from Course e</query>
+        </nq>
+        <nq e="false" name="Course.findByName">
+            <query>Select c from Course c where c.name=:name</query>
+        </nq>
+    </entity>
+    <wsl>
+        <ws n="Main" id="_16200339936942">
+            <i ref="_162003808469612" x="262" y="62"/>
+            <i ref="_16200380616549" x="255" y="351"/>
+            <i ref="_16200380266723" x="29" y="199"/>
+            <i ref="_16200380307696" x="494" y="199"/>
+        </ws>
+    </wsl>
+</entity-mappings>
