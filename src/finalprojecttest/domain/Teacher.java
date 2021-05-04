@@ -3,6 +3,7 @@ package finalprojecttest.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
  * @author Me
  */
 @Entity
+@Cacheable(false)
 public class Teacher {
 
     @Id
@@ -21,7 +23,7 @@ public class Teacher {
     private int id;
     @Basic
     private String name;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Course> courses;
 
     public Teacher() {
@@ -70,9 +72,13 @@ public class Teacher {
         course.getTeachers().remove(this);
     }
 
-    @Override
-    public String toString() {
-        return "Teacher{" + "id=" + id + ", name=" + name + ", courses=" + courses + '}';
+    public void print() {
+        
+        System.out.println("--------- Teacher -------------");
+        System.out.println("Id: " + id + " name:" + name);
+        System.out.println("Courses: ");
+        courses.forEach(c -> c.getName());
+        System.out.println("-------------------------------");
     }
     
     

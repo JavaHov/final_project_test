@@ -1,6 +1,7 @@
 package finalprojecttest.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToOne;
  * @author Me
  */
 @Entity
+@Cacheable(false)
 public class Student {
 
     @Id
@@ -19,7 +21,7 @@ public class Student {
     private int id;
     @Basic
     private String name;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Education education;
 
     public Student() {
@@ -54,12 +56,21 @@ public class Student {
     public void setEducation(Education education) {
         this.education = education;
     }
+    
+    public void removeEducation(Education education) {
+        
+        this.education = null; // Vet inte om det här fungerar...mot databasen.
+    }
 
-    @Override
-    public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", education=" + education + '}';
+    public void print() {
+        
+        System.out.println("-------------------- Student -----------------------");
+        System.out.print("Id: " + id + " name: " + name + " education ");
+        if(education == null)
+            System.out.println("(no education chosen)");
+        else
+            System.out.println(education.getName());
+        System.out.println("----------------------------------------------------");
     }
     
-    
-
 }

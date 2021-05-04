@@ -3,6 +3,7 @@ package finalprojecttest.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
  * @author Me
  */
 @Entity
+@Cacheable(false)
 public class Course {
 
     @Id
@@ -79,9 +81,16 @@ public class Course {
         getTeachers().remove(teacher);
     }
 
-    @Override
-    public String toString() {
-        return "Course{" + "id=" + id + ", name=" + name + ", education=" + education + ", teachers=" + teachers + '}';
+    public void print() {
+        
+        System.out.println("--------- Course ------------------------");
+        System.out.println("ID: " + id + " name: " + name);
+        System.out.println("Belongs to education:" + education.getName());
+        System.out.println("Teacher/s: ");
+        
+        teachers.forEach(t -> System.out.println(t.getName()));
+        System.out.println("-----------------------------------------");
+        
     }
     
     
