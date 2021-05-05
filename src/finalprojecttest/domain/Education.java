@@ -24,8 +24,8 @@ public class Education {
     private int id;
     @Basic
     private String name;
-    @OneToOne(mappedBy = "education")
-    private Student student;
+    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER)
+    private List<Student> students;
     @OneToMany(mappedBy = "education", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Course> courses;
     
@@ -54,12 +54,16 @@ public class Education {
         this.name = name;
     }
 
-    public Student getStudent() {
-        return student;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void removeStudents() {
+        students.clear();
     }
 
     public List<Course> getCourses() {
@@ -82,6 +86,10 @@ public class Education {
         getCourses().remove(course);
         course.setEducation(null);
     }
+    
+    public void removeCourses() {
+        courses.clear();
+    }
 
     public void print() {
         
@@ -91,7 +99,13 @@ public class Education {
         if(courses == null)
             System.out.println("(no registered courses)");
         else
-            courses.forEach(c -> System.out.println(c.getName()));
+        courses.forEach(c -> System.out.println(c.getName()));
+        
+        System.out.println("Students: ");
+        if(students == null)
+            System.out.println("(no registered students)");
+        else
+            students.forEach(s -> System.out.println(s.getName()));
         System.out.println("-----------------------------------");
     }
     

@@ -81,8 +81,13 @@ public class EducationDAO {
         
         Education education = em.find(Education.class, educationID);
     
+
+        
         em.getTransaction().begin();
-        em.remove(education);
+
+        //education.removeStudents();
+        //education.removeCourses();
+        em.remove(education);           // Varför funkar det inte? Har glömt.
         em.getTransaction().commit();
         em.close();
     }
