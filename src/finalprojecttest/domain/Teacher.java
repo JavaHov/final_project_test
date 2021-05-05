@@ -92,7 +92,7 @@ public class Teacher {
         if(courses == null)
             System.out.println("(no registered courses)");
         else
-            courses.forEach(c -> c.getName());
+            courses.forEach(c -> System.out.println(c.getName())); 
         System.out.println("-------------------------------");
     }
     
