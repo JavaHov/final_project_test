@@ -10,6 +10,7 @@ import finalprojecttest.domain.Course;
 import finalprojecttest.domain.Education;
 import finalprojecttest.domain.Student;
 import java.util.List;
+import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -111,6 +112,26 @@ public class EducationDAO {
         
         em.close();
         
+    }
+
+    void numberOfEducations() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Education> query = em.createQuery("SELECT e FROM Education e", Education.class);
+        List<Education> students = query.getResultList();
+        
+        if(students.isEmpty()) {
+            
+            System.out.println("No students in Table...");
+        }
+        else {
+            
+            long numEducations = students.stream().count();
+            System.out.println("Number of Educations: " + numEducations);
+        }
+ 
+        em.close();
     }
     
 }

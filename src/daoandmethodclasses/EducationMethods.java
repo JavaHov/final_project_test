@@ -82,5 +82,10 @@ public class EducationMethods {
         
         educationDAO.showAllEducations();
     }
+
+    public static void numberOfEducations() {
+        
+        educationDAO.numberOfEducations();
+    }
     
 }

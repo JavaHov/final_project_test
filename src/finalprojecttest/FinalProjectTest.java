@@ -23,7 +23,7 @@ public class FinalProjectTest {
         Course java = new Course("Java");
         Course databases = new Course("Databases");
         
-        Student student1 = new Student("Jonas");
+        Student student1 = new Student("Jonas", 23);
         
         student1.setEducation(education);
         education.addCourse(java);

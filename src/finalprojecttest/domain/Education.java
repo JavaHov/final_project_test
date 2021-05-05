@@ -88,7 +88,10 @@ public class Education {
         System.out.println("---------- Education --------------");
         System.out.println("Id: " + id + " name: " + name);
         System.out.println("Courses: ");
-        courses.forEach(c -> System.out.println(c.getName()));
+        if(courses == null)
+            System.out.println("(no registered courses)");
+        else
+            courses.forEach(c -> System.out.println(c.getName()));
         System.out.println("-----------------------------------");
     }
     

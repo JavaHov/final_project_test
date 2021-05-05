@@ -13,7 +13,11 @@ public class StudentMethods {
         
         System.out.println("Name of Student:");
         String name = scanner.nextLine();
-        studentDAO.addStudent(name);
+        
+        System.out.println("Age:");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        studentDAO.addStudent(name, age);
     }
 
     public static void updateStudent() {
@@ -24,7 +28,11 @@ public class StudentMethods {
         
         System.out.println("New name of Student:");
         String newName = scanner.nextLine();
-        studentDAO.updateStudent(studentID, newName);        
+        
+        System.out.println("New age of Student:");
+        int newAge = scanner.nextInt();
+        scanner.nextLine();
+        studentDAO.updateStudent(studentID, newName, newAge);        
         
     }
 
@@ -51,6 +59,16 @@ public class StudentMethods {
     public static void showAllStudents() {
         
         studentDAO.showAllStudents();
+    }
+
+    public static void numberOfStudents() {
+        
+        studentDAO.numberOfStudents();
+    }
+
+    public static void averageAgeStudents() {
+        
+        studentDAO.averageAgeStudents();
     }
     
 }

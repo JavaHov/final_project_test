@@ -54,5 +54,10 @@ public class CourseMethods {
         scanner.nextLine();
         courseDAO.addTeacherToCourse(teacherID, courseID);
     }
+
+    public static void numberOfCourses() {
+        
+        courseDAO.numberOfCourses();
+    }
     
 }

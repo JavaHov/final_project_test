@@ -76,5 +76,24 @@ public class CourseDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    void numberOfCourses() {
+        
+       EntityManager em = emf.createEntityManager();
+       
+       TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c", Course.class);
+       List<Course> courses = query.getResultList();
+       
+       if(courses.isEmpty()) {
+           System.out.println("No Courses...");
+       }
+       else {
+           
+            long numCourses = courses.stream().count();
+            System.out.println("Number of Courses: " + numCourses);  
+       }
+
+        em.close();
+    }
     
 }

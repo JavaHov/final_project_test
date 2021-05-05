@@ -25,15 +25,27 @@ public class Teacher {
     private String name;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Course> courses;
+    private int age;
 
     public Teacher() {
         
     }
     
-    public Teacher(String name) {
+    public Teacher(String name, int age) {
         
         this.name = name;
+        this.age = age;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    
     
     public int getId() {
         return id;
@@ -75,9 +87,12 @@ public class Teacher {
     public void print() {
         
         System.out.println("--------- Teacher -------------");
-        System.out.println("Id: " + id + " name:" + name);
+        System.out.println("Id: " + id + " name:" + name + " age: " + age);
         System.out.println("Courses: ");
-        courses.forEach(c -> c.getName());
+        if(courses == null)
+            System.out.println("(no registered courses)");
+        else
+            courses.forEach(c -> c.getName());
         System.out.println("-------------------------------");
     }
     

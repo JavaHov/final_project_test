@@ -23,15 +23,27 @@ public class Student {
     private String name;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Education education;
+    private int age;
 
     public Student() {
         
     }
     
-    public Student(String name) {
+    public Student(String name, int age) {
         
         this.name = name;
+        this.age = age;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    
     
     public int getId() {
         return id;
@@ -65,7 +77,7 @@ public class Student {
     public void print() {
         
         System.out.println("-------------------- Student -----------------------");
-        System.out.print("Id: " + id + " name: " + name + " education ");
+        System.out.print("Id: " + id + " name: " + name + " age: " + age + " education ");
         if(education == null)
             System.out.println("(no education chosen)");
         else

@@ -21,7 +21,12 @@ public class TeacherMethods {
         
         System.out.println("Name for Teacher:");
         String name = scanner.nextLine();
-        teacherDAO.addTeacher(name);
+        
+        System.out.println("Age:");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        
+        teacherDAO.addTeacher(name, age);
     }
 
     public static void addCourseToTeacher() {
@@ -45,7 +50,11 @@ public class TeacherMethods {
         
         System.out.println("New name for Teacher:");
         String newName = scanner.nextLine();
-        teacherDAO.updateTeacher(teacherID, newName);
+        
+        System.out.println("New age for Teacher:");
+        int newAge = scanner.nextInt();
+        scanner.nextLine();
+        teacherDAO.updateTeacher(teacherID, newName, newAge);
     }
 
     public static void removeTeacher() {
@@ -73,6 +82,16 @@ public class TeacherMethods {
     public static void showAllTeachers() {
         
         teacherDAO.showAllTeachers();
+    }
+
+    public static void numberOfTeachers() {
+        
+        teacherDAO.numberOfTeachers();
+    }
+
+    public static void averageAgeTeachers() {
+        
+        teacherDAO.averageAgeTeachers();
     }
     
 }

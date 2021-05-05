@@ -31,6 +31,7 @@ public class MainTestProgram {
         System.out.println("2. Update item");
         System.out.println("3. Remove item");
         System.out.println("4. Print");
+        System.out.println("5. Statistics");
         System.out.println("0. Exit");
         System.out.println("---------------------");
         
@@ -55,6 +56,9 @@ public class MainTestProgram {
                 break;
             case 4:
                 print();
+                break;
+            case 5:
+                statistics();
                 break;
             case 0:
                 loop = false;
@@ -218,6 +222,43 @@ public class MainTestProgram {
                 break;
             default:
                 System.out.println("Invalid choice.");
+                break;
+        }
+    }
+
+    private static void statistics() {
+        
+        System.out.println("1. Number of Students");
+        System.out.println("2. Number of Teachers");
+        System.out.println("3. Number of Courses");
+        System.out.println("4. Number of Educations");
+        System.out.println("5. Average age Students");
+        System.out.println("6. Average age Teachers");
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        
+        switch(choice) {
+            
+            case 1:
+                StudentMethods.numberOfStudents();
+                break;
+            case 2:
+                TeacherMethods.numberOfTeachers();
+                break;
+            case 3:
+                CourseMethods.numberOfCourses();
+                break;
+            case 4:
+                EducationMethods.numberOfEducations();
+                break;
+            case 5:
+                StudentMethods.averageAgeStudents();
+                break;
+            case 6:
+                TeacherMethods.averageAgeTeachers();
+                break;
+            default:
                 break;
         }
     }

@@ -8,6 +8,7 @@ package daoandmethodclasses;
 import static daoandmethodclasses.CourseDAO.emf;
 import finalprojecttest.domain.Student;
 import java.util.List;
+import java.util.OptionalDouble;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -17,10 +18,10 @@ import javax.persistence.TypedQuery;
  */
 public class StudentDAO {
 
-    void addStudent(String name) {
+    void addStudent(String name, int age) {
         
         EntityManager em = emf.createEntityManager();
-        Student student = new Student(name);
+        Student student = new Student(name, age);
         
         em.getTransaction().begin();
         em.persist(student);
@@ -30,7 +31,7 @@ public class StudentDAO {
         
     }
 
-    void updateStudent(int studentID, String newName) {
+    void updateStudent(int studentID, String newName, int newAge) {
         
         EntityManager em = emf.createEntityManager();
         
@@ -38,6 +39,7 @@ public class StudentDAO {
         
         em.getTransaction().begin();
         student.setName(newName);
+        student.setAge(newAge);
         em.getTransaction().commit();
         em.close();
     }
@@ -75,6 +77,42 @@ public class StudentDAO {
         students.forEach(s -> s.print());
         em.close();
         
+        
+    }
+
+    void numberOfStudents() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = query.getResultList();
+        
+        long numStudents = students.stream().count();
+        
+        System.out.println("Number of Students: " + numStudents);
+        
+        em.close();
+    }
+
+    void averageAgeStudents() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = query.getResultList();
+        
+        if(students.isEmpty()) {
+            
+            System.out.println("No students in Table...");
+        }
+        else {
+            
+            double averageAge = students.stream().mapToInt(s -> s.getAge()).average().getAsDouble();
+            System.out.format("Average age Students: %.2f years.", averageAge);
+            System.out.println();
+        }
+
+        em.close();
         
     }
     
