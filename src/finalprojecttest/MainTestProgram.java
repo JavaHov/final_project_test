@@ -6,6 +6,7 @@ import daoandmethodclasses.CourseMethods;
 import daoandmethodclasses.EducationMethods;
 import daoandmethodclasses.StudentMethods;
 import daoandmethodclasses.TeacherMethods;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -35,8 +36,7 @@ public class MainTestProgram {
         System.out.println("0. Exit");
         System.out.println("---------------------");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         return choice;
     }
@@ -81,10 +81,10 @@ public class MainTestProgram {
         System.out.println("6. Add Course to Education");
         System.out.println("7. Add Course to Teacher");
         System.out.println("8. Add Teacher to Course");
+        System.out.println("9. Add new Student to new Education");
         System.out.println("-------------------------------");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         switch(choice) {
             
@@ -112,6 +112,8 @@ public class MainTestProgram {
             case 8:
                 CourseMethods.addTeacherToCourse();
                 break;
+            case 9:
+                StudentMethods.addNewStudentToNewEducation();
             default:
                 System.out.println("Invalid choice.");
                 break;
@@ -127,8 +129,7 @@ public class MainTestProgram {
         System.out.println("4. Update Teacher");
         System.out.println("--------------------------");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         switch(choice) {
             
@@ -162,8 +163,7 @@ public class MainTestProgram {
         System.out.println("7. Remove Course from Teacher");
         System.out.println("-----------------------------------");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         switch(choice) {
             
@@ -203,8 +203,7 @@ public class MainTestProgram {
         System.out.println("4. Show all Teachers");
         System.out.println("---------------------------");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         switch(choice) {
             
@@ -235,8 +234,7 @@ public class MainTestProgram {
         System.out.println("5. Average age Students");
         System.out.println("6. Average age Teachers");
         
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getCheckedInt();
         
         switch(choice) {
             
@@ -261,5 +259,27 @@ public class MainTestProgram {
             default:
                 break;
         }
+    }
+    
+    
+    public static int getCheckedInt() {
+        
+        int choice = 0;
+        boolean loop = true;
+        
+        while(loop) {
+            try {
+               choice = scanner.nextInt();
+               scanner.nextLine();
+               loop = false;
+
+            }
+            catch(InputMismatchException e) {
+                System.out.println("Only numbers: Try again.");
+                scanner.nextLine();
+            }   
+        }
+        return choice;
+        
     }
 }

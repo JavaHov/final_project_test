@@ -5,6 +5,8 @@
  */
 package daoandmethodclasses;
 
+import static daoandmethodclasses.CourseMethods.showAllCourses;
+import static finalprojecttest.MainTestProgram.getCheckedInt;
 import java.util.Scanner;
 
 /**
@@ -23,58 +25,56 @@ public class TeacherMethods {
         String name = scanner.nextLine();
         
         System.out.println("Age:");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+        int age = getCheckedInt();
         
         teacherDAO.addTeacher(name, age);
     }
 
     public static void addCourseToTeacher() {
         
+        showAllTeachers();
         System.out.println("Teacher ID:");
-        int teacherID = scanner.nextInt();
-        scanner.nextLine();
+        int teacherID = getCheckedInt();
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         
         teacherDAO.addCourseToTeacher(teacherID, courseID);
     }
 
     public static void updateTeacher() {
         
+        showAllTeachers();
         System.out.println("Teacher ID:");
-        int teacherID = scanner.nextInt();
-        scanner.nextLine();
+        int teacherID = getCheckedInt();
         
         System.out.println("New name for Teacher:");
         String newName = scanner.nextLine();
         
         System.out.println("New age for Teacher:");
-        int newAge = scanner.nextInt();
-        scanner.nextLine();
+        int newAge = getCheckedInt();
         teacherDAO.updateTeacher(teacherID, newName, newAge);
     }
 
     public static void removeTeacher() {
         
+        showAllTeachers();
         System.out.println("Teacher ID:");
-        int teacherID = scanner.nextInt();
-        scanner.nextLine();
+        int teacherID = getCheckedInt();
         
         teacherDAO.removeTeacher(teacherID);
     }
 
     public static void removeCourseFromTeacher() {
         
+        showAllTeachers();
         System.out.println("Teacher ID:");
-        int teacherID = scanner.nextInt();
-        scanner.nextLine();
+        int teacherID = getCheckedInt();
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         
         teacherDAO.removeCourseFromTeacher(teacherID, courseID);
     }

@@ -24,10 +24,10 @@ public class Education {
     private int id;
     @Basic
     private String name;
-    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER)
-    private List<Student> students;
-    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Course> courses;
+    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
+    private List<Student> students = new ArrayList<Student>();
+    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
+    private List<Course> courses = new ArrayList<>();
     
     public Education() {
         
@@ -63,13 +63,16 @@ public class Education {
     }
 
     public void removeStudents() {
-        students.clear();
+        
+            for (Student student : students) {
+            
+            student.setEducation(null);
+            
+        }
     }
 
     public List<Course> getCourses() {
-        if (courses == null) {
-            courses = new ArrayList<>();
-        }
+    
         return courses;
     }
 
@@ -78,17 +81,22 @@ public class Education {
     }
 
     public void addCourse(Course course) {
-        getCourses().add(course);
+        courses.add(course);
         course.setEducation(this);
     }
 
     public void removeCourse(Course course) {
-        getCourses().remove(course);
+        courses.remove(course);
         course.setEducation(null);
     }
     
     public void removeCourses() {
-        courses.clear();
+       //courses.clear();
+        for (Course course : courses) {
+            
+            course.setEducation(null);
+            
+        }
     }
 
     public void print() {

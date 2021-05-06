@@ -26,7 +26,7 @@ public class Course {
     private String name;
     @ManyToOne
     private Education education;
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Teacher> teachers;
     
     public Course() {

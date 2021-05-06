@@ -5,6 +5,9 @@
  */
 package daoandmethodclasses;
 
+import static daoandmethodclasses.CourseMethods.showAllCourses;
+import static daoandmethodclasses.StudentMethods.showAllStudents;
+import static finalprojecttest.MainTestProgram.getCheckedInt;
 import java.util.Scanner;
 
 
@@ -23,35 +26,35 @@ public class EducationMethods {
 
     public static void addEducationToStudent() {
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         
+        showAllStudents();
         System.out.println("Student ID:");
-        int studentID = scanner.nextInt();
-        scanner.nextLine();
+        int studentID = getCheckedInt();
         
         educationDAO.addEducationToStudent(educationID, studentID);
     }
 
     public static void addCourseToEducation() {
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         
         educationDAO.addCourseToEducation(courseID, educationID);
     }
 
     public static void updateEducation() {
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         
         System.out.println("New name for Education:");
         String newName = scanner.nextLine();
@@ -60,21 +63,21 @@ public class EducationMethods {
 
     public static void removeEducation() {
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         educationDAO.removeEducation(educationID);
     }
 
     public static void removeCourseFromEducation() {
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         educationDAO.removeCourseFromEducation(courseID, educationID);
     }
 

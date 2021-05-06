@@ -85,9 +85,9 @@ public class EducationDAO {
         
         em.getTransaction().begin();
 
-        //education.removeStudents();
-        //education.removeCourses();
-        em.remove(education);           // Varför funkar det inte? Har glömt.
+        education.removeStudents();
+        education.removeCourses();
+        em.remove(education);           
         em.getTransaction().commit();
         em.close();
     }

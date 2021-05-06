@@ -21,7 +21,7 @@ public class Student {
     private int id;
     @Basic
     private String name;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Education education;
     private int age;
 

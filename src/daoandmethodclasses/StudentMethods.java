@@ -1,6 +1,8 @@
 
 package daoandmethodclasses;
 
+import static daoandmethodclasses.EducationMethods.showAllEducations;
+import static finalprojecttest.MainTestProgram.getCheckedInt;
 import java.util.Scanner;
 
 
@@ -15,44 +17,42 @@ public class StudentMethods {
         String name = scanner.nextLine();
         
         System.out.println("Age:");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+        int age = getCheckedInt();
         studentDAO.addStudent(name, age);
     }
 
     public static void updateStudent() {
 
+        showAllStudents();
         System.out.println("Studen ID:");
-        int studentID = scanner.nextInt();
-        scanner.nextLine();
+        int studentID = getCheckedInt();
         
         System.out.println("New name of Student:");
         String newName = scanner.nextLine();
         
         System.out.println("New age of Student:");
-        int newAge = scanner.nextInt();
-        scanner.nextLine();
+        int newAge = getCheckedInt();
         studentDAO.updateStudent(studentID, newName, newAge);        
         
     }
 
     public static void removeStudent() {
         
+        showAllStudents();
         System.out.println("Student ID:");
-        int studentID = scanner.nextInt();
-        scanner.nextLine();
+        int studentID = getCheckedInt();
         studentDAO.removeStudent(studentID);
     }
 
     public static void removeEducationFromStudent() {
         
+        showAllStudents();
         System.out.println("Student ID:");
-        int studentID = scanner.nextInt();
-        scanner.nextLine();
+        int studentID = getCheckedInt();
         
+        showAllEducations();
         System.out.println("Education ID:");
-        int educationID = scanner.nextInt();
-        scanner.nextLine();
+        int educationID = getCheckedInt();
         studentDAO.removeEducationFromStudent(studentID, educationID);
     }
 
@@ -69,6 +69,19 @@ public class StudentMethods {
     public static void averageAgeStudents() {
         
         studentDAO.averageAgeStudents();
+    }
+
+    public static void addNewStudentToNewEducation() {
+        
+        System.out.println("Name of new Student:");
+        String studName = scanner.nextLine();
+        
+        System.out.println("Age of Student:");
+        int studAge = getCheckedInt();
+        
+        System.out.println("Name of new Education:");
+        String eduName = scanner.nextLine();
+        studentDAO.addNewStudentToNewEducation(studName, studAge, eduName);
     }
     
 }

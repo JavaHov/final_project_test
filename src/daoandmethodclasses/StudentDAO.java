@@ -6,6 +6,7 @@
 package daoandmethodclasses;
 
 import static daoandmethodclasses.CourseDAO.emf;
+import finalprojecttest.domain.Education;
 import finalprojecttest.domain.Student;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -114,6 +115,21 @@ public class StudentDAO {
 
         em.close();
         
+    }
+
+    void addNewStudentToNewEducation(String studName, int studAge, String eduName) {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        Student student = new Student(studName, studAge);
+        Education education = new Education(eduName);
+        
+        student.setEducation(education);
+        
+        em.getTransaction().begin();
+        em.persist(student);
+        em.getTransaction().commit();
+        em.close();
     }
     
 }

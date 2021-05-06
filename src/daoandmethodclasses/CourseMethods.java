@@ -1,6 +1,8 @@
 
 package daoandmethodclasses;
 
+import static daoandmethodclasses.TeacherMethods.showAllTeachers;
+import static finalprojecttest.MainTestProgram.getCheckedInt;
 import java.util.Scanner;
 
 
@@ -11,7 +13,6 @@ public class CourseMethods {
 
     public static void addCourse() {
         
-        System.out.println("Testing... in addCourse...");
         System.out.println("Name of Course:");
         String name = scanner.nextLine();
         courseDAO.addCourse(name);
@@ -20,9 +21,9 @@ public class CourseMethods {
 
     public static void updateCourse() {
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         
         
         System.out.println("New name of Course:");
@@ -32,9 +33,9 @@ public class CourseMethods {
 
     public static void removeCourse() {
         
+        showAllCourses();
         System.out.println("Course ID:");
-        int courseId = scanner.nextInt();
-        scanner.nextLine();
+        int courseId = getCheckedInt();
         courseDAO.removeCourse(courseId);
     }
 
@@ -45,13 +46,13 @@ public class CourseMethods {
 
     public static void addTeacherToCourse() {
         
+        showAllTeachers();
         System.out.println("Teacher ID:");
-        int teacherID = scanner.nextInt();
-        scanner.nextLine();
+        int teacherID = getCheckedInt();
         
+        showAllCourses();
         System.out.println("Course ID");
-        int courseID = scanner.nextInt();
-        scanner.nextLine();
+        int courseID = getCheckedInt();
         courseDAO.addTeacherToCourse(teacherID, courseID);
     }
 
