@@ -15,7 +15,11 @@ public class CourseMethods {
         
         System.out.println("Name of Course:");
         String name = scanner.nextLine();
-        courseDAO.addCourse(name);
+        
+        System.out.println("Points for Course:");
+        int points = getCheckedInt();
+        
+        courseDAO.addCourse(name, points);
         
     }
 
@@ -28,7 +32,11 @@ public class CourseMethods {
         
         System.out.println("New name of Course:");
         String newName = scanner.nextLine();
-        courseDAO.updateCourse(courseID, newName);
+        
+        System.out.println("Points for Course:");
+        int newPoints = getCheckedInt();
+        
+        courseDAO.updateCourse(courseID, newName, newPoints);
     }
 
     public static void removeCourse() {

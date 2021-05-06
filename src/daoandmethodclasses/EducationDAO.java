@@ -52,9 +52,13 @@ public class EducationDAO {
         Course course = em.find(Course.class, courseID);
         Education education = em.find(Education.class, educationID);
         
+        int coursePoints = course.getPoints();
+        int newPoints = coursePoints + education.getPoints();
+        
         if((course != null) && (education != null)) {
             em.getTransaction().begin();
             education.addCourse(course);
+            education.setPoints(newPoints);
             em.getTransaction().commit();
         }
         else {
@@ -100,6 +104,7 @@ public class EducationDAO {
         Education education = em.find(Education.class, educationID);
         
         em.getTransaction().begin();
+        education.setPoints(education.getPoints() - course.getPoints());
         education.removeCourse(course);
         em.getTransaction().commit();
         em.close(); 

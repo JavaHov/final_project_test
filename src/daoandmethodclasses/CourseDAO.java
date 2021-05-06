@@ -14,11 +14,11 @@ public class CourseDAO {
     
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
-    void addCourse(String name) {
+    void addCourse(String name, int points) {
         
         EntityManager em = emf.createEntityManager();
         
-        Course c = new Course(name);
+        Course c = new Course(name, points);
         
         em.getTransaction().begin();
         em.persist(c);
@@ -28,13 +28,17 @@ public class CourseDAO {
         
     }
 
-    void updateCourse(int courseID, String newName) {
+    void updateCourse(int courseID, String newName, int newPoints) {
         
         EntityManager em = emf.createEntityManager();
         Course course = em.find(Course.class, courseID);
         
+        int educationPoints = course.getEducation().getPoints();
+        
         em.getTransaction().begin();
         course.setName(newName);
+        course.setPoints(newPoints);
+        course.getEducation().setPoints(educationPoints + newPoints);
         em.getTransaction().commit();
         em.close();
         

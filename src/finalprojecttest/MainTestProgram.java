@@ -28,11 +28,11 @@ public class MainTestProgram {
     public static int mainMenu() {
         
         System.out.println("--------------------");
-        System.out.println("1. Add item");
-        System.out.println("2. Update item");
-        System.out.println("3. Remove item");
-        System.out.println("4. Print");
-        System.out.println("5. Statistics");
+        System.out.println("1. Add menu");
+        System.out.println("2. Update menu");
+        System.out.println("3. Remove menu");
+        System.out.println("4. Print menu");
+        System.out.println("5. Statistics menu");
         System.out.println("0. Exit");
         System.out.println("---------------------");
         

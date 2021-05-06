@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * @author Me
@@ -29,6 +30,8 @@ public class Course {
     @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Teacher> teachers;
     
+    private int points;
+    
     public Course() {
         
     }
@@ -37,6 +40,23 @@ public class Course {
         
         this.name = name;
     }
+    
+    public Course(String name, int points) {
+        
+        this.name = name;
+        this.points = points;
+ 
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -84,7 +104,7 @@ public class Course {
     public void print() {
         
         System.out.println("--------- Course ------------------------");
-        System.out.println("ID: " + id + " name: " + name);
+        System.out.println("ID: " + id + ", name: " + name + ", points: " + points);
         if(education == null)
             System.out.println("(no registered education)");
         else

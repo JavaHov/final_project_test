@@ -29,6 +29,10 @@ public class Education {
     @OneToMany(mappedBy = "education", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
     private List<Course> courses = new ArrayList<>();
     
+    
+    
+    private int points;
+    
     public Education() {
         
     }
@@ -38,6 +42,16 @@ public class Education {
         this.name = name;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
@@ -102,7 +116,7 @@ public class Education {
     public void print() {
         
         System.out.println("---------- Education --------------");
-        System.out.println("Id: " + id + " name: " + name);
+        System.out.println("Id: " + id + ", name: " + name + ", points: " + points);
         System.out.println("Courses: ");
         if(courses == null)
             System.out.println("(no registered courses)");
