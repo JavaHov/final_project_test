@@ -47,7 +47,11 @@ public class Education {
     }
 
     public void setPoints(int points) {
-        this.points = points;
+        
+        if(points < 0)
+            this.points = 0;
+        else
+            this.points = points;
     }
 
     

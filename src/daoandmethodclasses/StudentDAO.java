@@ -131,5 +131,31 @@ public class StudentDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    void youngestStudent() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = query.getResultList();
+        
+        int youngest = students.stream().mapToInt(s -> s.getAge()).min().getAsInt();
+        
+        System.out.println("The youngest Student(s):");
+        students.stream().filter(s -> s.getAge() == youngest).forEach(s -> s.print());
+    }
+
+    void oldestStudent() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = query.getResultList();
+        
+        int oldest = students.stream().mapToInt(Student::getAge).max().getAsInt();
+        
+        System.out.println("The oldest Student(s):");
+        students.stream().filter(s -> s.getAge() == oldest).forEach(s -> s.print());
+    }
     
 }

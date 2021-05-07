@@ -233,6 +233,10 @@ public class MainTestProgram {
         System.out.println("4. Number of Educations");
         System.out.println("5. Average age Students");
         System.out.println("6. Average age Teachers");
+        System.out.println("7. Youngest Student");
+        System.out.println("8. Oldest Student");
+        System.out.println("9. Youngest Teacher");
+        System.out.println("10. Oldest Teacher");
         
         int choice = getCheckedInt();
         
@@ -256,6 +260,18 @@ public class MainTestProgram {
             case 6:
                 TeacherMethods.averageAgeTeachers();
                 break;
+            case 7:
+                StudentMethods.youngestStudent();
+                break;
+            case 8:
+                StudentMethods.oldestStudent();
+                break;
+            case 9:
+                TeacherMethods.youngestTeacher();
+                break;
+            case 10:
+                TeacherMethods.oldestTeacher();
+                break;
             default:
                 break;
         }
@@ -272,7 +288,6 @@ public class MainTestProgram {
                choice = scanner.nextInt();
                scanner.nextLine();
                loop = false;
-
             }
             catch(InputMismatchException e) {
                 System.out.println("Only numbers: Try again.");

@@ -49,8 +49,11 @@ public class CourseDAO {
         
         EntityManager em = emf.createEntityManager();
         Course course = em.find(Course.class, courseID);
+        int eduPoints = course.getEducation().getPoints();
+        
         
         em.getTransaction().begin();
+        course.getEducation().setPoints(eduPoints - course.getPoints());
         em.remove(course);
         em.getTransaction().commit();
         em.close();

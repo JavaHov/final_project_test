@@ -93,5 +93,15 @@ public class TeacherMethods {
         
         teacherDAO.averageAgeTeachers();
     }
+
+    public static void youngestTeacher() {
+        
+        teacherDAO.youngestTeacher();
+    }
+
+    public static void oldestTeacher() {
+        
+        teacherDAO.oldestTeacher();
+    }
     
 }

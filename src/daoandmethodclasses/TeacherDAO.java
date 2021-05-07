@@ -122,5 +122,31 @@ public class TeacherDAO {
 
         em.close();
     }
+
+    void youngestTeacher() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Teacher> query = em.createQuery("SELECT t FROM Teacher t", Teacher.class);
+        List<Teacher> teachers = query.getResultList();
+        
+        int youngest = teachers.stream().mapToInt(Teacher::getAge).min().getAsInt();
+        
+        System.out.println("Youngest Teacher(s):");
+        teachers.stream().filter(t -> t.getAge() == youngest).forEach(t -> t.print());
+    }
+
+    void oldestTeacher() {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        TypedQuery<Teacher> query = em.createQuery("SELECT t FROM Teacher t", Teacher.class);
+        List<Teacher> teachers = query.getResultList();
+        
+        int oldest = teachers.stream().mapToInt(t -> t.getAge()).max().getAsInt();
+        
+        System.out.println("Oldest Teacher(s):");
+        teachers.stream().filter(t -> t.getAge() == oldest).forEach(t -> t.print());
+    }
     
 }

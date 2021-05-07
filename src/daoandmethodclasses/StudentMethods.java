@@ -83,5 +83,15 @@ public class StudentMethods {
         String eduName = scanner.nextLine();
         studentDAO.addNewStudentToNewEducation(studName, studAge, eduName);
     }
+
+    public static void youngestStudent() {
+        
+        studentDAO.youngestStudent();
+    }
+
+    public static void oldestStudent() {
+        
+        studentDAO.oldestStudent();
+    }
     
 }

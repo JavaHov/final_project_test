@@ -4,9 +4,11 @@ package finalprojecttest;
 import finalprojecttest.domain.Course;
 import finalprojecttest.domain.Education;
 import finalprojecttest.domain.Student;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 
 public class FinalProjectTest {
@@ -18,20 +20,20 @@ public class FinalProjectTest {
         
         EntityManager em = emf.createEntityManager();
         
-        Education education = new Education("Computer Science");
+        TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = query.getResultList();
         
-        Course java = new Course("Java");
-        Course databases = new Course("Databases");
+        int youngest = students.stream().mapToInt(s -> s.getAge()).min().getAsInt();
         
-        Student student1 = new Student("Jonas", 23);
+        System.out.println("The youngest student/s: ");
+        students.stream().filter(s -> s.getAge() == youngest).forEach(s -> s.print());
         
-        student1.setEducation(education);
-        education.addCourse(java);
-        education.addCourse(databases);
         
-        em.getTransaction().begin();
-        em.persist(student1);
-        em.getTransaction().commit();
+        int oldest = students.stream().mapToInt(s -> s.getAge()).max().getAsInt();
+        
+        System.out.println("Oldest student/s:");
+        students.stream().filter(s -> s.getAge() == oldest).forEach(s -> s.print());
+        
         em.close();
     }
     
